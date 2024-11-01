@@ -300,6 +300,10 @@ class ModuleEvents extends Modules
             $iCalEvent->setDescription((string) $eventRecord['dat_description']);
             $iCalEvent->setLocation(new \Eluceo\iCal\Domain\ValueObject\Location((string) $eventRecord['dat_location']));
 
+            // use Eluceo\iCal\Domain\ValueObject\Uri;
+            $uri = new Eluceo\iCal\Domain\ValueObject\Uri("https://example.org/calendarevent");
+            $event->setUrl($uri);
+
             if ((string) $eventRecord['dat_timestamp_change'] === '') {
                 $iCalEvent->touch(new Eluceo\iCal\Domain\ValueObject\Timestamp(new DateTimeImmutable($event->getValue('dat_timestamp_create', 'Y-m-d H:i:s'))));
             }  else {
